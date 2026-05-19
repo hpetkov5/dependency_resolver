@@ -5,7 +5,7 @@ This module uses Python's unittest framework to validate the correctness of depe
 '''
 
 import unittest
-from src.dependency_resolver import DependencyResolver
+from src.dependency_resolver import dependency_resolver
 
 class TestDependencyResolver(unittest.TestCase):
     """Test class defining the test cases to validate dependency resolver functionality"""
