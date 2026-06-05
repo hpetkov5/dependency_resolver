@@ -5,14 +5,25 @@ This module defines Dependency resolver functionality
 import json
 
 
-def create_dict_from_json() -> dict:
+FILE_NAME = "package.JSON"
+
+
+def read_json() -> dict:
     """
     Function to read JSON data and returns it
+    :return raw_data: JSON raw data as dictionary
+    """
+    with open (FILE_NAME, mode="r", encoding="utf-8") as json_file:
+        raw_data = json.load(json_file)
+    return raw_data
+
+
+def prepare_data() -> dict:
+    """
+    Function that takes the raw data and formats it
     :return prepared_json_data: JSON data as dictionary
     """
-    with open ("package.JSOn", mode="r", encoding="utf-8") as json_file:
-        raw_data = json.load(json_file)
-
+    raw_data = read_json()
     prepared_json_data = {}
     for pkg in raw_data["packages"]:
         prepared_json_data[pkg["name"]] = pkg["requires"]
@@ -44,7 +55,7 @@ def dependency_resolver(package_name: str) -> list:
     :param package_name: package name input as str
     :return dependency_list: list of all dependencies of the input package
     """
-    json_data_as_dict = create_dict_from_json()
+    json_data_as_dict = prepare_data()
 
     dependency_list = []
     visited = []
