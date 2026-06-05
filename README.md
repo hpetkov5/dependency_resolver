@@ -18,7 +18,7 @@ How the program works
 
 ### Load JSON data
 ```python
-create_dict_from_json()
+prepare_data()
 ```
 Read the JSON file and convert the data into dictionary.
 ```python
